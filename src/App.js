@@ -1,29 +1,20 @@
 import logo from './logo.svg';
 import './App.css';
-import { useEffect } from 'react';
-import { connect } from 'react-redux'
-import { getAllBooks } from './redux/booksRedux'
 
-function App({data}) {
-useEffect(()=>{
-  console.log('use')
-  
+//import { connect } from 'react-redux'
+//import { getAllBooks } from './redux/booksRedux'
+import BooksList from './components/BooksList/BooksListContainer';
+import AuthorsList from './components/AuthorsList/AuthorsListContainer';
 
-},[])
+function App() {
 
   return (
     <div className="App">
-      <ul>
-        {data.map((book)=>
-          <li key={book.id}>{book.title}</li>
-        )}
-      </ul>
+      <BooksList></BooksList>
+      <AuthorsList></AuthorsList>
     </div>
   );
 }
 
-const mapStateToProps = state => ({ 
-  data: getAllBooks(state),
-})
 
-export default connect(mapStateToProps)(App)
+export default App
