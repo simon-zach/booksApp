@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from 'react-redux'
-import {getAllAuthors} from '../../redux/authorsRedux'
+import {getAllAuthors} from '../../redux/booksRedux'
 import AuthorsList from "./AuthorsList";
 
 

@@ -1,17 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
 
-//import { connect } from 'react-redux'
-//import { getAllBooks } from './redux/booksRedux'
+import './App.css';
+import { Container } from 'react-bootstrap';
 import BooksList from './components/BooksList/BooksListContainer';
 import AuthorsList from './components/AuthorsList/AuthorsListContainer';
+import BookForm from './components/BookForm/BookFormContainer';
 
 function App() {
 
   return (
     <div className="App">
-      <BooksList></BooksList>
-      <AuthorsList></AuthorsList>
+      <Container>
+        <BookForm></BookForm>
+        <BooksList></BooksList>
+      </Container>
+    
+     
+      
     </div>
   );
 }

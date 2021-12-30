@@ -1,13 +1,11 @@
 import { createStore, combineReducers } from 'redux'
 import initialState from './initialState'
 import booksReducer from './booksRedux'
-import authorsReducer from './authorsRedux.js'
+
 
 
 const reducers = {
     books: booksReducer,
-    authors: authorsReducer,
-
 }
 
 const reducer = combineReducers(reducers);
