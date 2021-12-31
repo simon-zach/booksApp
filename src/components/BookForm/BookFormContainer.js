@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 
 
-import {addBook} from './../../redux/booksRedux'
+import {addBookRequest} from './../../redux/booksRedux'
 import BookForm from "./BookForm";
 
 
@@ -9,7 +9,7 @@ import BookForm from "./BookForm";
 
 
   const mapDispatchToProps = dispatch => ({ 
-    addBook: book => dispatch(addBook(book)),
+    addBook: book => dispatch(addBookRequest(book)),
   })
   
   
