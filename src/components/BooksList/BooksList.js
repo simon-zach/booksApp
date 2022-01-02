@@ -1,18 +1,26 @@
 import React from "react";
+import {Link} from 'react-router-dom'
 import { nanoid } from "nanoid";
 import { Card,CardGroup,ListGroup,Container ,Button,Row,Col} from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux'
-import { getAllBooks, removeBookRequest } from '../../redux/booksRedux'
+import { getAllBooks, removeBookRequest,getBook } from '../../redux/booksRedux'
 
 function BooksList (){
+
     const books = useSelector(state => getAllBooks(state))
-
-
 	const dispatch = useDispatch()
 	const removeBook = bookId => dispatch(removeBookRequest(bookId))
 
-    return(
-            <Container fluid>
+    const handleEdit=(bookId)=>{
+        const res=books.find(book=>book.id=bookId)
+        console.log(res)
+
+    }
+
+    return( 
+            
+            <Container fluid>{console.log('booklist')}
+                <h1>Book in db:</h1>
                             <Row className="g-4">
                                 
                         {  books.map(book=>{
@@ -35,7 +43,7 @@ function BooksList (){
                                             </Card.Body>
                                             <Card.Footer>
                                                 <Button variant="danger" onClick={()=>removeBook(book.id)}>Delete</Button>{' '}
-                                                <Button variant="primary" >Edit</Button>{' '}
+                                                <Link to={`/editBook/${book.id}`}><Button variant="primary">Edit</Button></Link>{' '}
                                             </Card.Footer>
                                             </Card>
                                         </Col>

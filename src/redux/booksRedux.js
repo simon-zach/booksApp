@@ -5,14 +5,19 @@ const createActionName = function(name) {
 const ADD_BOOK = createActionName('ADD_BOOK');
 const REMOVE_BOOK = createActionName('REMOVE_BOOK');
 const FETCH_BOOKS = createActionName('FETCH_BOOKS');
+const UPDATE_BOOK = createActionName('UPDATE_BOOK');
 //selectors
 export const getAllBooks = state => state.books;
+export const getBook = (state, bookId) => state.books.find((book)=>book.id===bookId);
+
 export const getAllAuthors = state => [... new Set(state.books.map(book=>book.author))];
 
 // action creators
 export const addBook = payload => ({ type: ADD_BOOK, payload })
 export const removeBook = payload => ({ type: REMOVE_BOOK, payload })
 export const updateBooksData = payload => ({ type: FETCH_BOOKS, payload })
+
+export const updateBook = payload => ({ type: UPDATE_BOOK, payload })
 
 export const fetchBooks = () => {
     return async (dispatch) => {
@@ -49,12 +54,19 @@ export const addBookRequest = book => {
             .then(() => dispatch(addBook(book)))
     }
 }
+export const updateBookRequest = book => {
+    return (dispatch) => {
+        fetch(`http://localhost:3131/books/${book.id}`, { method: 'PUT', body: JSON.stringify(book), headers: { 'Content-Type': 'application/json'}})
+            .then(() => dispatch(updateBook(book)))
+    }
+}
 
 const reducer = function(statePart = [], action = {}) {
     switch(action.type) {
         case FETCH_BOOKS:
-
-            return  [...statePart,  ...action.payload ]
+            return  [  ...action.payload ]
+        case UPDATE_BOOK:
+            return    statePart.map(book=>(book.id===action.payload.id)?  action.payload :  book)  
         case ADD_BOOK:
             return [ ...statePart, action.payload ]
         case REMOVE_BOOK:

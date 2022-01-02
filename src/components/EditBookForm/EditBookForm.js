@@ -2,18 +2,32 @@ import PropTypes from 'prop-types'
 import React, {useState} from "react";
 
 import { nanoid } from 'nanoid'
-import {Form,Button} from "react-bootstrap";
+import {Form,Button,Container} from "react-bootstrap";
+import {useParams} from'react-router-dom';
+import {useSelector,useDispatch} from 'react-redux'
+import {getBook,updateBookRequest} from '../../redux/booksRedux'
 
-function BookForm({addBook}){
+
+function EditBookForm(){
     
-    const [title,setTitle] = useState('');
-    const [author,setAuthor] = useState('');
-    const [price,setPrice] = useState(0);
+
+    const {bookId} = useParams();
+    
+      const dispatch = useDispatch()
+      const updateBook = book => dispatch(updateBookRequest(book))
+
+     
+
+    const book = useSelector(state => getBook(state,bookId))
+    const [title,setTitle] = useState(book.title);
+    const [author,setAuthor] = useState(book.author);
+    const [price,setPrice] = useState(book.price);
 
     const handleSubmit = (event) =>{
         event.preventDefault();
-        addBook({
-            id: nanoid(),
+        console.log('handle')
+        updateBook({
+            id: bookId,
             title: title,
             author: author,
             price: price
@@ -28,9 +42,9 @@ const handleOnChangeAuthor = (e) => {
 const handleOnChangePrice = (e) => {
     setPrice(e.target.value);
 }
-    return(<>
-       
-        <h1>Add new Book:</h1>
+    return(
+        <Container>
+         <h1>Update</h1>
                 <Form  onSubmit={handleSubmit}>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                         <Form.Label>Title:</Form.Label>
@@ -45,14 +59,16 @@ const handleOnChangePrice = (e) => {
                         <Form.Label>Price:</Form.Label>
                         <Form.Control type="text" name="price" value={price} onChange={e=>handleOnChangePrice(e)}/>
                     </Form.Group>
-                    <Button  as="input" type="submit" value="Submit" />
+                    <Button  as="input" type="submit" value="Save changes" />
                     
-                </Form><br/>
+                </Form><br/>   
+        </Container>
+        
             
-    </>)
+    )
 }
 
-BookForm.propTypes = { 
+EditBookForm.propTypes = { 
 	addBook: PropTypes.func
 }
-export default BookForm;
+export default EditBookForm;

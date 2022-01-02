@@ -1,3 +1,4 @@
+import { Route, Routes, Outlet } from 'react-router-dom'
 import React,{useEffect,useState} from 'react';
 import './App.css';
 import { Container } from 'react-bootstrap';
@@ -10,21 +11,20 @@ function App({updateBooksData}) {
 
 useEffect(()=>{
   updateBooksData()
-  
-},[])
+  console.log('useEffect')
+ 
+})
 
   return (
     
     <div className="App">
       <Container>
         <BookForm></BookForm>
-        
         <BooksList></BooksList>
       </Container>
-    
-     
-      
+  
     </div>
+      
   );
 }
 const mapDispatchToProps = dispatch => {
