@@ -7,10 +7,10 @@ const REMOVE_BOOK = createActionName('REMOVE_BOOK');
 const FETCH_BOOKS = createActionName('FETCH_BOOKS');
 const UPDATE_BOOK = createActionName('UPDATE_BOOK');
 //selectors
-export const getAllBooks = state => state.books;
-export const getBook = (state, bookId) => state.books.find((book)=>book.id===bookId);
-
-export const getAllAuthors = state => [... new Set(state.books.map(book=>book.author))];
+export const getAllBooks = state => state.books.data;
+export const getBook = (state, bookId) => state.books.data.find((book)=>book.id===bookId);
+export const getRequestStatus =(state) =>state.books.request
+//export const getAllAuthors = state => [... new Set(state.books.map(book=>book.author))];
 
 // action creators
 export const addBook = payload => ({ type: ADD_BOOK, payload })
@@ -25,10 +25,10 @@ export const fetchBooks = () => {
            // console.log('fuck')
             //dispatch(startRequest())
             const res = await fetch('http://localhost:3131/books')
-            //if(res.status !== 200) throw new Error('Something went wrong')
+            if (res.status !== 200) throw new Error('Something went wrong')
             const data = await res.json()
-            //console.log(data)
             dispatch(updateBooksData(data))
+            
            // dispatch(finishRequestWithSuccess())
 
         } catch(err) {
@@ -42,36 +42,57 @@ export const fetchBooks = () => {
 }
 
 export const removeBookRequest = bookId => {
-    return (dispatch) => {
-        fetch(`http://localhost:3131/books/${bookId}`, { method: 'DELETE' })
-            .then(() => dispatch(removeBook(bookId)))
+    return async (dispatch) => {
+        try{
+            const res = await fetch(`http://localhost:3131/books/${bookId}`, { method: 'DELETE' })
+            dispatch(removeBook(bookId))
+            if (res.status !== 200) throw new Error('Something went wrong')
+            else alert('Removed Successfully')
+        }catch(error){
+            console.log(error)
+        }
     }
 }
 
 export const addBookRequest = book => {
-    return (dispatch) => {
-        fetch(`http://localhost:3131/books`, { method: 'POST', body: JSON.stringify(book), headers: { 'Content-Type': 'application/json'}})
-            .then(() => dispatch(addBook(book)))
+    return async (dispatch) => {
+        try {
+            const res= await fetch(`http://localhost:3131/books`, { method: 'POST', body: JSON.stringify(book), headers: { 'Content-Type': 'application/json'}})
+            if (res.status !== 201) throw new Error('Something went wrong')
+            else alert('Added Successfully') 
+            dispatch(addBook(book))
+        }
+        catch(error){
+            console.log(error)
+        }
+        
     }
 }
 export const updateBookRequest = book => {
-    return (dispatch) => {
-        fetch(`http://localhost:3131/books/${book.id}`, { method: 'PUT', body: JSON.stringify(book), headers: { 'Content-Type': 'application/json'}})
-            .then(() => dispatch(updateBook(book)))
+    return async (dispatch) => {
+        try{
+            const res = await fetch(`http://localhost:3131/books/${book.id}`, { method: 'PUT', body: JSON.stringify(book), headers: { 'Content-Type': 'application/json'}})
+            if (res.status !== 200) throw new Error('Something went wrong')
+            else alert('Updated Successfully')
+            dispatch(updateBook(book))
+
+        }catch(error){
+            console.log(error)
+        }
     }
 }
 
 const reducer = function(statePart = [], action = {}) {
     switch(action.type) {
         case FETCH_BOOKS:
-            return  [  ...action.payload ]
-        case UPDATE_BOOK:
-            return    statePart.map(book=>(book.id===action.payload.id)?  action.payload :  book)  
+            return { ...statePart, data: action.payload }
+        case UPDATE_BOOK: 
+            return   { ...statePart, data: statePart.data.map(book=>(book.id===action.payload.id)?  action.payload :  book) } 
         case ADD_BOOK:
-            return [ ...statePart, action.payload ]
+            return { ...statePart, data: [ ...statePart.data, action.payload ] }
         case REMOVE_BOOK:
-            console.log(action.payload)
-            return statePart.filter(book => book.id !== action.payload)
+        
+            return { ...statePart, data: statePart.data.filter(book => book.id !== action.payload) }
                 default:
             return statePart
     }

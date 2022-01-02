@@ -20,7 +20,7 @@ function BooksList (){
     return( 
             
             <Container fluid>{console.log('booklist')}
-                <h1>Book in db:</h1>
+                <h1>Books in db:</h1>
                             <Row className="g-4">
                                 
                         {  books.map(book=>{

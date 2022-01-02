@@ -12,12 +12,14 @@ function BookForm({addBook}){
 
     const handleSubmit = (event) =>{
         event.preventDefault();
-        addBook({
+        
+         addBook({
             id: nanoid(),
             title: title,
             author: author,
             price: price
         })
+
     }
 const handleOnChangeTitle = (e) => {
     setTitle(e.target.value);
@@ -34,16 +36,16 @@ const handleOnChangePrice = (e) => {
                 <Form  onSubmit={handleSubmit}>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                         <Form.Label>Title:</Form.Label>
-                        <Form.Control type="text" name="title" value={title} onChange={e=>handleOnChangeTitle(e)}/>
+                        <Form.Control required="required" type="text" name="title" value={title} onChange={e=>handleOnChangeTitle(e)}/>
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                         <Form.Label>Author:</Form.Label>
-                        <Form.Control type="text" name="author" value={author} onChange={e=>handleOnChangeAuthor(e)}/>
+                        <Form.Control required="required" type="text" name="author" value={author} onChange={e=>handleOnChangeAuthor(e)}/>
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                         <Form.Label>Price:</Form.Label>
-                        <Form.Control type="text" name="price" value={price} onChange={e=>handleOnChangePrice(e)}/>
+                        <Form.Control required="required" type="number" name="price" value={price} onChange={e=>handleOnChangePrice(e)}/>
                     </Form.Group>
                     <Button  as="input" type="submit" value="Submit" />
                     
