@@ -1,8 +1,8 @@
-import { createStore, combineReducers,applyMiddleware} from 'redux'
-import initialState from './initialState'
-import booksReducer from './booksRedux'
-import thunk from 'redux-thunk'
-import { composeWithDevTools } from 'redux-devtools-extension';
+import { createStore, combineReducers, applyMiddleware} from "redux"
+import initialState from "./initialState"
+import booksReducer from "./booksRedux"
+import thunk from "redux-thunk"
+import { composeWithDevTools } from "redux-devtools-extension";
 
 const reducers = {
     books: booksReducer,

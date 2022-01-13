@@ -5,7 +5,7 @@ const initialState = {
             pending: false,
             error: false,
             success: false,
-            message:''
+            
         }
     }
 }

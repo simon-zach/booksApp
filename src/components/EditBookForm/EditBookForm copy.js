@@ -2,17 +2,19 @@ import PropTypes from "prop-types"
 import React, {useState, useEffect} from "react"
 import {Form, Button, Container, Spinner, Alert} from "react-bootstrap"
 import {useParams} from "react-router-dom"
-import {useSelector} from "react-redux"
+import {useSelector,useDispatch} from "react-redux"
+import {getBook, updateBookRequest, getRequestStatus, resetRequestStatus} from "../../redux/booksRedux"
 
-function EditBookForm({getBook, updateBookRequest, getRequestStatus, resetRequestStatus}){
-    
+function EditBookForm(){
     useEffect(()=>{
-        resetRequestStatus()
+         dispatch(resetRequestStatus())
     },[])
 
     const {bookId} = useParams();
-    const request = getRequestStatus()
-    const book = getBook(bookId)
+    const request = ((state)=>getRequestStatus(state))
+    const dispatch = useDispatch()
+    const updateBook = book => dispatch(updateBookRequest(book))
+    const book = useSelector(state => getBook(state,bookId))
     
     const [title,setTitle] = useState(book.title);
     const [author,setAuthor] = useState(book.author);
@@ -20,7 +22,7 @@ function EditBookForm({getBook, updateBookRequest, getRequestStatus, resetReques
 
     const handleSubmit = (event) =>{
         event.preventDefault();
-        updateBookRequest({
+        updateBook({
             id: bookId,
             title: title,
             author: author,
