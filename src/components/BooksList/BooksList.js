@@ -1,7 +1,7 @@
 import React,{useEffect} from "react";
 import {Container,Row,Alert,Spinner} from "react-bootstrap";
 import BooksItem from "../BooksItem/BooksItemContainer";
-
+import PropTypes from "prop-types"
 
 function BooksList ({ getAllBooks,getRequestStatus ,resetRequestStatus}){
     useEffect(()=>{  
@@ -25,6 +25,12 @@ function BooksList ({ getAllBooks,getRequestStatus ,resetRequestStatus}){
             </Row>
         </Container>                    
     );
-            
 }
+
+BooksList.propTypes ={
+    getAllBooks: PropTypes.func,
+    getRequestStatus: PropTypes.func,
+    resetRequestStatus: PropTypes.func 
+}
+
 export default BooksList;

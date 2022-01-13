@@ -1,7 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom"
 import { Card,ListGroup ,Button,Col} from "react-bootstrap";
-
+import PropTypes from "prop-types"
 
 function BooksItem({book,removeBook}) {
 
@@ -23,5 +23,12 @@ function BooksItem({book,removeBook}) {
             </Col>
         </>
     );
+}
+
+BooksItem.propTypes ={
+    book: PropTypes.object,
+    removeBook: PropTypes.func,
+    
+
 }
 export default BooksItem;
