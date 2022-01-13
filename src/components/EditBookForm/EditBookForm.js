@@ -2,7 +2,6 @@ import PropTypes from "prop-types"
 import React, {useState, useEffect} from "react"
 import {Form, Button, Container, Spinner, Alert} from "react-bootstrap"
 import {useParams} from "react-router-dom"
-import {useSelector} from "react-redux"
 
 function EditBookForm({getBook, updateBookRequest, getRequestStatus, resetRequestStatus}){
     
@@ -58,14 +57,16 @@ function EditBookForm({getBook, updateBookRequest, getRequestStatus, resetReques
                         <Form.Control required="required" type="number" name="price" value={price} onChange={e=>handleOnChangePrice(e)}/>
                     </Form.Group>
                     <Button  as="input" type="submit" value="Save changes" />
-                
             </Form><br/>   
         </Container>   
     )
 }
 
 EditBookForm.propTypes = { 
-	addBook: PropTypes.func
+    getBook: PropTypes.func, 
+    updateBookRequest: PropTypes.func,
+    getRequestStatus: PropTypes.func,
+    resetRequestStatus: PropTypes.func
 }
 
 export default EditBookForm;

@@ -1,7 +1,7 @@
 import React,{useEffect,useState} from "react";
 import "./App.css";
 import { Container } from "react-bootstrap";
-import BooksList from "./components/BooksList/BooksList";
+import BooksList from "./components/BooksList/BooksListContainer";
 import BookForm from "./components/BookForm/BookFormContainer";
 import {fetchBooks} from "./redux/booksRedux";
 import {connect} from "react-redux"

@@ -4,7 +4,7 @@ import EditBookForm from "./EditBookForm";
 
 
 const mapStateToProps = state => ({ 
-  getRequestStatus: ()=>getRequestStatus(state),
+  getRequestStatus: () => getRequestStatus(state),
   getBook: (bookId) => getBook(state,bookId),
 
 })

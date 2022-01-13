@@ -1,17 +1,16 @@
 import React,{useEffect} from "react";
 import {Container,Row,Alert,Spinner} from "react-bootstrap";
-import { useSelector, useDispatch } from "react-redux"
-import { getAllBooks,getRequestStatus ,resetRequestStatus} from "../../redux/booksRedux"
 import BooksItem from "../BooksItem/BooksItemContainer";
 
-function BooksList (){
+
+function BooksList ({ getAllBooks,getRequestStatus ,resetRequestStatus}){
     useEffect(()=>{  
-        dispatch(resetRequestStatus())
+        resetRequestStatus()
     },[])
     
-    const dispatch = useDispatch()
-    const books = useSelector(state => getAllBooks(state))
-    const request = useSelector((state)=>getRequestStatus(state))
+
+    const books = getAllBooks()
+    const request = getRequestStatus()
 	
     return( 
         <Container fluid>
