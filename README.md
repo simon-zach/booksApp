@@ -1,7 +1,7 @@
 # Book App
 
 This project was created to present REDUX in react app.
-App is about storing books. Following selectors an creator will describe best the app functionality.
+App store book items. Following selectors and creators will describe best the app functionality.
 
 ```
 //selectors
@@ -22,7 +22,7 @@ export const finishRequestWithSuccess = () => ({ type: FINISH_REQUEST_WITH_SUCCE
 export const resetRequestStatus = () => ({type: RESET_REQUEST_STATUS})
 ```
 
-## How to run
+## How to run?
 
 Clone repo and run JSON fake server.
 
