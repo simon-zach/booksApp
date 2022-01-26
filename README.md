@@ -22,7 +22,7 @@ export const finishRequestWithSuccess = () => ({ type: FINISH_REQUEST_WITH_SUCCE
 export const resetRequestStatus = () => ({type: RESET_REQUEST_STATUS})
 ```
 
-### How to run
+## How to run
 
 Clone repo and run JSON fake server.
 
