@@ -58,6 +58,7 @@ export const removeBookRequest = bookId => {
             dispatch(finishRequestWithSuccess())
         }catch(error){
             console.log(error)
+            dispatch(finishRequestWithError())
         }
     }
 }
@@ -74,6 +75,7 @@ export const addBookRequest = book => {
         }
         catch(error){
             console.log(error)
+            dispatch(finishRequestWithError())
         }
         
     }
@@ -89,6 +91,7 @@ export const updateBookRequest = book => {
             dispatch(finishRequestWithSuccess())
         }catch(error){
             console.log(error)
+            dispatch(finishRequestWithError())
         }
     }
 }

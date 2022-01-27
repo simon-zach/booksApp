@@ -1,38 +1,14 @@
 {
   "books": [
     {
-      "id": "HK7bSiUBRGGOPFfNilckT",
-      "title": "dfgghfgh",
-      "author": "gthjndnhjdfgjnhfghfgh",
-      "price": "345345"
-    },
-    {
-      "id": "aDLnI-qMff1lWpVj1L34m",
-      "title": "dfbdfb",
-      "author": "fbddfbdbf",
-      "price": "536"
-    },
-    {
-      "id": "3hjyIGAVDAZRj4ZYQw1er",
-      "title": "hok",
-      "author": "rk",
-      "price": "04"
-    },
-    {
       "id": "R67SeKHcYKCsOawzOy927",
-      "title": "iy7iy",
+      "title": "Nazwa nowa",
       "author": "iiuui",
       "price": "0676"
     },
     {
-      "id": "qrTDaRfYEAB3XjlU9rgtV",
-      "title": "6trytyrh",
-      "author": "ttryytr",
-      "price": "435"
-    },
-    {
       "id": "_D3vm6dAG7ciXMkY4Y2PN",
-      "title": "ftghtrh",
+      "title": "ftghtrhf",
       "author": "trhtrehrth",
       "price": "5436456456"
     },
@@ -41,6 +17,18 @@
       "title": "fdgd",
       "author": "dfgdfg",
       "price": "45"
+    },
+    {
+      "id": "JK5NMi0LviuiaRe4ojy9C",
+      "title": "jukuyk",
+      "author": "yukyuk",
+      "price": "567567"
+    },
+    {
+      "id": "Q6DgRCSAM07ZdZkPdrs3-",
+      "title": "rtehgrththrth",
+      "author": "rthtrhthrthrt",
+      "price": 0
     }
   ]
 }
